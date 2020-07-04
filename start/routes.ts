@@ -20,6 +20,11 @@
 
 import Route from '@ioc:Adonis/Core/Route';
 
-Route.get('/', async () => {
-  return { hello: 'world' };
+Route.get('/link/:filename', async ({ params }) => {
+  return Route.makeSignedUrl('signedFile', {
+    params: { filename: params.filename },
+    expiresIn: '10m',
+  });
 });
+
+Route.post('/upload/:filename', 'FilesController.upload').as('signedFile');
