@@ -1,9 +1,6 @@
 {
   "typescript": true,
-  "commands": [
-    "./commands",
-    "@adonisjs/core/build/commands"
-  ],
+  "commands": ["./commands", "@adonisjs/core/build/commands"],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
     "App": "app",
@@ -11,16 +8,11 @@
     "Config": "config",
     "Database": "database"
   },
-  "preloads": [
-    "./start/routes",
-    "./start/kernel"
-  ],
+  "preloads": ["./start/routes", "./start/kernel"],
   "providers": [
     "./providers/AppProvider",
-    "@adonisjs/core"
+    "@adonisjs/core",
+    "adonis-datadrive"
   ],
-  "metaFiles": [
-    ".env",
-    ".adonisrc.json"
-  ]
+  "metaFiles": [".env", ".adonisrc.json"]
 }
