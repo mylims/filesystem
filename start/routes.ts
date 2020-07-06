@@ -20,11 +20,24 @@
 
 import Route from '@ioc:Adonis/Core/Route';
 
-Route.get('/link/:filename', async ({ params }) => {
-  return Route.makeSignedUrl('signedFile', {
+const expiresIn = '10m';
+
+Route.get('/sign_upload/:filename', async ({ params }) => {
+  return Route.makeSignedUrl('signedUpload', {
     params: { filename: params.filename },
-    expiresIn: '10m',
+    expiresIn,
   });
 });
 
-Route.post('/upload/:filename', 'FilesController.upload').as('signedFile');
+Route.post('/upload/:filename', 'FilesController.upload').as('signedUpload');
+
+Route.get('/sign_download/:filename', async ({ params }) => {
+  return Route.makeSignedUrl('signedDownload', {
+    params: { filename: params.filename },
+    expiresIn,
+  });
+});
+
+Route.get('/download/:filename', 'FilesController.download').as(
+  'signedDownload',
+);
