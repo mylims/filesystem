@@ -118,7 +118,7 @@ const bodyParserConfig: BodyParserConfig = {
     | projects/:id/file
     | ```
     */
-    processManually: [],
+    processManually: ['/upload/:filename'],
 
     /*
     |--------------------------------------------------------------------------

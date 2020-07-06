@@ -8,11 +8,11 @@ export default class FilesController {
     const { filename } = params;
     if (!filename) return { error: 'filename is required' };
 
-    const content = request.file(filename);
-    if (!content) return { error: `${filename} doesn't exist` };
+    request.multipart.onFile(filename, {}, async (file) => {
+      await DataDrive.drive('./data').put(filename, file);
+    });
+    await request.multipart.process();
 
-    const drive = DataDrive.drive('base directory');
-    const data = await drive.put(filename, content);
-    return { data };
+    return { data: `${filename} uploaded` };
   }
 }
