@@ -11,6 +11,9 @@ FROM node:12.16.2-alpine3.11 AS app
 
 WORKDIR /usr/src/app
 
+ENV NODE_ENV production
+ENV ENV_SILENT true
+
 COPY --from=builder /usr/build/build .
 RUN npm ci
 
