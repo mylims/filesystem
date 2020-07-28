@@ -12,7 +12,7 @@ FROM node:12.16.2-alpine3.11 AS app
 WORKDIR /usr/src/app
 
 COPY --from=builder /usr/build/build .
-COPY --from=builder /usr/build/node_modules ./node_modules
+RUN npm ci
 
 USER node
 CMD [ "node", "server.js" ]
