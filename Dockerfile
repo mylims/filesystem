@@ -4,7 +4,7 @@ WORKDIR /usr/build
 RUN npm i npm@latest -g
 
 COPY . /usr/build
-RUN npm install
+RUN npm ci
 RUN node ace build --production
 
 FROM node:12.16.2-alpine3.11 AS app
