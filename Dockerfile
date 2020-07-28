@@ -15,7 +15,7 @@ ENV NODE_ENV production
 ENV ENV_SILENT true
 
 COPY --from=builder /usr/build/build .
-RUN npm ci
+COPY --from=builder /usr/build/node_modules ./node_modules
 
 USER node
 CMD [ "node", "server.js" ]
